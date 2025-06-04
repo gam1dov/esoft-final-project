@@ -1,4 +1,13 @@
+import Header from "./components/shared/Header";
+import Footer from "./components/Footer";
+
 const App = () => {
-  return <h1>NEWB</h1>;
+  return (
+    <div className="flex h-screen flex-col">
+      <Header />
+      <main className="flex-1 wrapper"></main>
+      <Footer />
+    </div>
+  );
 };
 export default App;
