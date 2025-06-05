@@ -17,13 +17,13 @@ const Menu = () => {
         <Button asChild variant="ghost">
           {/* Link to='/cart' в Роутере */}
           <a href="/cart">
-            <ShoppingCart /> Cart
+            <ShoppingCart /> Корзина
           </a>
         </Button>
         <Button asChild>
           {/* Link to='/sign-in' в Роутере */}
           <a href="/sign-in">
-            <UserIcon /> Sign in
+            <UserIcon /> Войти
           </a>
         </Button>
       </nav>
@@ -38,13 +38,13 @@ const Menu = () => {
             <Button asChild variant="ghost">
               {/* Link to='/cart' в Роутере */}
               <a href="/cart">
-                <ShoppingCart /> Cart
+                <ShoppingCart /> Корзина
               </a>
             </Button>
             <Button asChild>
               {/* Link to='/sign-in' в Роутере */}
               <a href="/sign-in">
-                <UserIcon /> Sign in
+                <UserIcon /> Войти
               </a>
             </Button>
             <SheetDescription></SheetDescription>
