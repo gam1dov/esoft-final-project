@@ -1,4 +1,4 @@
-import ToggleMode from "./ToggleMode";
+import { Link } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
 import {
@@ -8,6 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../ui/sheet";
+import ToggleMode from "./ToggleMode";
 
 const Menu = () => {
   return (
@@ -15,16 +16,14 @@ const Menu = () => {
       <nav className="hidden md:flex w-full max-w-xs gap-1 ">
         <ToggleMode />
         <Button asChild variant="ghost">
-          {/* Link to='/cart' в Роутере */}
-          <a href="/cart">
+          <Link to="/cart">
             <ShoppingCart /> Корзина
-          </a>
+          </Link>
         </Button>
         <Button asChild>
-          {/* Link to='/sign-in' в Роутере */}
-          <a href="/sign-in">
+          <Link to="/sign-in">
             <UserIcon /> Войти
-          </a>
+          </Link>
         </Button>
       </nav>
       <nav className="md:hidden">
@@ -36,16 +35,14 @@ const Menu = () => {
             <SheetTitle>Меню</SheetTitle>
             <ToggleMode />
             <Button asChild variant="ghost">
-              {/* Link to='/cart' в Роутере */}
-              <a href="/cart">
+              <Link to="/cart">
                 <ShoppingCart /> Корзина
-              </a>
+              </Link>
             </Button>
             <Button asChild>
-              {/* Link to='/sign-in' в Роутере */}
-              <a href="/sign-in">
+              <Link to="/sign-in">
                 <UserIcon /> Войти
-              </a>
+              </Link>
             </Button>
             <SheetDescription></SheetDescription>
           </SheetContent>

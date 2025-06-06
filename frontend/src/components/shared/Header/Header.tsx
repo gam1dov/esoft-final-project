@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 
 const Header = () => {
@@ -5,8 +6,7 @@ const Header = () => {
     <header className="w-full border-b">
       <div className="wrapper flex-between">
         <div className="flex-start">
-          {/* Link to='/' в Роутере */}
-          <a href="/" className="flex-start">
+          <Link to="/" className="flex-start">
             <img
               className="h-12 w-12 object-contain"
               src="/logo.svg"
@@ -15,7 +15,7 @@ const Header = () => {
             <span className="hidden lg:block font-bold text-2xl ml-3">
               NEBW
             </span>
-          </a>
+          </Link>
         </div>
         <Menu />
       </div>

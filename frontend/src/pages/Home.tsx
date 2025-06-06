@@ -1,7 +1,7 @@
-import dummy_data from "../../../../products";
-import ProductList from "../Product/ProductList";
+import dummy_data from "../../products";
+import ProductList from "../components/shared/Product/ProductList";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
     <>
       <ProductList
@@ -12,4 +12,4 @@ const Homepage = () => {
     </>
   );
 };
-export default Homepage;
+export default HomePage;
