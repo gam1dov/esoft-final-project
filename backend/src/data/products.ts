@@ -1,4 +1,23 @@
-const dummy_data = {
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  images: string[];
+  price: number;
+  brand: string;
+  rating: number;
+  numReviews: number;
+  countInStock: number;
+  isFeatured: boolean;
+  banner: string | null;
+}
+
+interface DummyData {
+  products: Product[];
+}
+
+const dummy_data: DummyData = {
   products: [
     {
       id: "polo",
@@ -24,7 +43,7 @@ const dummy_data = {
       brand: "Brooks Brothers",
       rating: 4.3,
       numReviews: 4,
-      stock: 12,
+      countInStock: 12,
       isFeatured: true,
       banner: "banner-2.jpg",
     },
@@ -38,7 +57,7 @@ const dummy_data = {
       brand: "Tommy Hilfiger",
       rating: 4.8,
       numReviews: 4,
-      stock: 0,
+      countInStock: 0,
       isFeatured: false,
       banner: null,
     },
@@ -52,7 +71,7 @@ const dummy_data = {
       brand: "Calvin Klein",
       rating: 3.9,
       numReviews: 3,
-      stock: 12,
+      countInStock: 12,
       isFeatured: false,
       banner: null,
     },
@@ -66,7 +85,7 @@ const dummy_data = {
       brand: "Polo",
       rating: 4.9,
       numReviews: 15,
-      stock: 9,
+      countInStock: 9,
       isFeatured: false,
       banner: null,
     },
@@ -81,7 +100,7 @@ const dummy_data = {
       brand: "Polo",
       rating: 4.8,
       numReviews: 14,
-      stock: 9,
+      countInStock: 9,
       isFeatured: true,
       banner: null,
     },
