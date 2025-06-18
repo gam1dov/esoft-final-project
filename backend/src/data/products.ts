@@ -1,5 +1,4 @@
 interface Product {
-  id: string;
   name: string;
   category: string;
   description: string;
@@ -8,103 +7,90 @@ interface Product {
   brand: string;
   rating: number;
   numReviews: number;
-  countInStock: number;
+  stock: number;
   isFeatured: boolean;
-  banner: string | null;
+  banner?: string | null;
 }
 
-interface DummyData {
-  products: Product[];
-}
+const products: Product[] = [
+  {
+    name: "Классическая футболка поло",
+    category: "Мужские рубашки",
+    description: "Классическая футболка поло",
+    images: ["/images/products/p1-1.jpg", "/images/products/p1-2.jpg"],
+    price: 4999,
+    brand: "Polo",
+    rating: 4.7,
+    numReviews: 7,
+    stock: 6,
+    isFeatured: true,
+    banner: "banner-1.jpg",
+  },
+  {
+    name: "Рубашка с длинными рукавами",
+    category: "Мужские рубашки",
+    description: "Первоклассный комфорт",
+    images: ["/images/products/p2-1.jpg", "/images/products/p2-2.jpg"],
+    price: 6999,
+    brand: "Brooks Brothers",
+    rating: 4.3,
+    numReviews: 4,
+    stock: 12,
+    isFeatured: true,
+    banner: "banner-2.jpg",
+  },
+  {
+    name: "Рубашка классического кроя",
+    category: "Мужские рубашки",
+    description: "Идеальное сочетание изысканности и комфорта",
+    images: ["/images/products/p3-1.jpg", "/images/products/p3-2.jpg"],
+    price: 8999,
+    brand: "Tommy Hilfiger",
+    rating: 4.8,
+    numReviews: 4,
+    stock: 0,
+    isFeatured: false,
+    banner: null,
+  },
+  {
+    name: "Рубашка стретч",
+    category: "Мужские рубашки",
+    description: "Красивый дизайн с мягкой облегающей тканью",
+    images: ["/images/products/p4-1.jpg", "/images/products/p4-2.jpg"],
+    price: 3999,
+    brand: "Calvin Klein",
+    rating: 3.9,
+    numReviews: 3,
+    stock: 12,
+    isFeatured: false,
+    banner: null,
+  },
+  {
+    name: "Брендовая рубашка Ральф Лоран",
+    category: "Мужские рубашки",
+    description: "Легендарный дизайн рубашки из изысканной ткани оксфорд",
+    images: ["/images/products/p5-1.jpg", "/images/products/p5-2.jpg"],
+    price: 7999,
+    brand: "Polo",
+    rating: 4.9,
+    numReviews: 15,
+    stock: 9,
+    isFeatured: false,
+    banner: null,
+  },
+  {
+    name: "Классическая толстовка",
+    category: "Мужские толстовки",
+    description: "Мягкий, стильный и идеально подходит для непринужденных дней",
+    images: ["/images/products/p6-1.jpg", "/images/products/p6-2.jpg"],
+    price: 10999,
+    brand: "Polo",
+    rating: 4.8,
+    numReviews: 14,
+    stock: 9,
+    isFeatured: true,
+    banner: null,
+  },
+];
 
-const dummy_data: DummyData = {
-  products: [
-    {
-      id: "polo",
-      name: "Классическая футболка поло",
-      category: "Мужские рубашки",
-      description: "Классическая футболка поло",
-      images: ["/images/products/p1-1.jpg", "/images/products/p1-2.jpg"],
-      price: 4999,
-      brand: "Polo",
-      rating: 4.7,
-      numReviews: 7,
-      countInStock: 6,
-      isFeatured: true,
-      banner: "banner-1.jpg",
-    },
-    {
-      id: "brooks",
-      name: "Рубашка с длинными рукавами",
-      category: "Мужские рубашки",
-      description: "Первоклассный комфорт",
-      images: ["/images/products/p2-1.jpg", "/images/products/p2-2.jpg"],
-      price: 6999,
-      brand: "Brooks Brothers",
-      rating: 4.3,
-      numReviews: 4,
-      countInStock: 12,
-      isFeatured: true,
-      banner: "banner-2.jpg",
-    },
-    {
-      id: "tommy-hilfiger",
-      name: "Рубашка классического кроя",
-      category: "Мужские рубашки",
-      description: "Идеальное сочетание изысканности и комфорта",
-      images: ["/images/products/p3-1.jpg", "/images/products/p3-2.jpg"],
-      price: 8999,
-      brand: "Tommy Hilfiger",
-      rating: 4.8,
-      numReviews: 4,
-      countInStock: 0,
-      isFeatured: false,
-      banner: null,
-    },
-    {
-      id: "calvin-klein",
-      name: "Рубашка стретч",
-      category: "Мужские рубашки",
-      description: "Красивый дизайн с мягкой облегающей тканью",
-      images: ["/images/products/p4-1.jpg", "/images/products/p4-2.jpg"],
-      price: 3999,
-      brand: "Calvin Klein",
-      rating: 3.9,
-      numReviews: 3,
-      countInStock: 12,
-      isFeatured: false,
-      banner: null,
-    },
-    {
-      id: "polo-ralph",
-      name: "Брендовая рубашка-поло Ральф Лоран",
-      category: "Мужские рубашки",
-      description: "Легендарный дизайн поло из изысканной ткани оксфорд",
-      images: ["/images/products/p5-1.jpg", "/images/products/p5-2.jpg"],
-      price: 7999,
-      brand: "Polo",
-      rating: 4.9,
-      numReviews: 15,
-      countInStock: 9,
-      isFeatured: false,
-      banner: null,
-    },
-    {
-      id: "polo-hoodie",
-      name: "Классическая толстовка с капюшоном",
-      category: "Мужские толстовки",
-      description:
-        "Мягкий, стильный и идеально подходит для непринужденных дней",
-      images: ["/images/products/p6-1.jpg", "/images/products/p6-2.jpg"],
-      price: 10999,
-      brand: "Polo",
-      rating: 4.8,
-      numReviews: 14,
-      countInStock: 9,
-      isFeatured: true,
-      banner: null,
-    },
-  ],
-};
-
-export default dummy_data;
+export default products;

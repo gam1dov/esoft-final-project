@@ -9,8 +9,7 @@ const ProductPrice = ({
 }) => {
   return (
     <p className={cn("text-2xl", className)}>
-      {value}
-      <span className="text-xs align-super"> руб.</span>
+      {Math.trunc(value)} <span className="text-xs"> руб.</span>
     </p>
   );
 };
