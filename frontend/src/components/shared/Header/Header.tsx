@@ -8,7 +8,7 @@ const Header = () => {
       <div className="wrapper flex-between">
         <div className="flex-start">
           <Link to="/" className="flex-start">
-            <Logo />
+            <Logo className={`h-12 w-12`} />
             <span className="hidden lg:block font-bold text-2xl ml-3">
               NEBW
             </span>

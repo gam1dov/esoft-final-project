@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "../../ui/card";
 import ProductPrice from "./ProductPrice";
-// import { type Product } from "./ProductList";
 import type { Product } from "types";
 
 const ProductCard = ({ product }: { product: Product }) => {

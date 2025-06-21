@@ -1,31 +1,43 @@
 import bcrypt from "bcryptjs";
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  is_admin: boolean;
-}
+// interface User {
+//   name: string;
+//   email: string;
+//   password: string;
+//   is_admin: boolean;
+// }
 
-const users: User[] = [
+const users = [
   {
-    name: "Admin User",
-    email: "admin@email.com",
+    name: "Maxim",
+    email: "admin@example.com",
     password: bcrypt.hashSync("123456", 10),
-    is_admin: true,
+    role: "admin",
   },
   {
-    name: "John Smith",
-    email: "john@email.com",
+    name: "Vera",
+    email: "user@example.com",
     password: bcrypt.hashSync("123456", 10),
-    is_admin: false,
+    role: "user",
   },
-  {
-    name: "Jane Smith",
-    email: "jane@email.com",
-    password: bcrypt.hashSync("123456", 10),
-    is_admin: false,
-  },
+  // {
+  //   name: "Admin User",
+  //   email: "admin@email.com",
+  //   password: bcrypt.hashSync("123456", 10),
+  //   is_admin: true,
+  // },
+  // {
+  //   name: "John Smith",
+  //   email: "john@email.com",
+  //   password: bcrypt.hashSync("123456", 10),
+  //   is_admin: false,
+  // },
+  // {
+  //   name: "Jane Smith",
+  //   email: "jane@email.com",
+  //   password: bcrypt.hashSync("123456", 10),
+  //   is_admin: false,
+  // },
 ];
 
 export default users;

@@ -1,37 +1,53 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import type { Product } from "types";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
+import { Plus } from "lucide-react";
+import { addToCart } from "../slices/cartSlice";
+import { useAppDispatch } from "../store/hooks";
 import ProductPrice from "../components/shared/Product/ProductPrice";
 import ProductImages from "../components/shared/Product/ProductImages";
+import Loader from "../components/shared/Loader";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../components/ui/select";
 
-const ProductDetailsPage = () => {
-  const [product, setProduct] = useState<Product | null>(null);
+const ProductDetails = () => {
   const { productId } = useParams();
 
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/products/${productId}`
-        );
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+  const [quantity, setQuantity] = useState(1);
 
-        const product: Product = await response.json();
-        setProduct(product);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchProduct();
-  }, [productId]);
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useGetProductDetailsQuery(productId);
+
+  if (isLoading) return <Loader />;
+
+  if (error) {
+    const errorMessage =
+      (error as { data?: { message?: string } })?.data?.message ||
+      (error as { message?: string })?.message ||
+      "Unknown error";
+    return <div>{errorMessage}</div>;
+  }
 
   if (!product) return <div>Product not found</div>;
+
+  const addToCardHandler = () => {
+    dispatch(addToCart({ ...product, quantity }));
+    navigate("/cart");
+  };
 
   return (
     <>
@@ -81,9 +97,30 @@ const ProductDetailsPage = () => {
                   )}
                 </div>
                 {product.stock > 0 && (
-                  <div className="flex-center">
-                    <Button className="w-full">Добавить в корзину</Button>
+                  <div className="mb-2 flex justify-between">
+                    <div>Количество</div>
+                    <Select
+                      value={quantity.toString()}
+                      onValueChange={(value) => setQuantity(Number(value))}
+                    >
+                      <SelectTrigger className="w-[80px]">
+                        <SelectValue placeholder="Quantity"></SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[...Array(product.stock).keys()].map((x) => (
+                          <SelectItem key={x + 1} value={(x + 1).toString()}>
+                            {x + 1}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
+                )}
+                {product.stock > 0 && (
+                  <Button className="w-full" onClick={addToCardHandler}>
+                    <Plus />
+                    Добавить в корзину
+                  </Button>
                 )}
               </CardContent>
             </Card>
@@ -93,4 +130,4 @@ const ProductDetailsPage = () => {
     </>
   );
 };
-export default ProductDetailsPage;
+export default ProductDetails;

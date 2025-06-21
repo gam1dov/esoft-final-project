@@ -1,3 +1,5 @@
+import { useAppSelector } from "../../../store/hooks";
+
 import { Link } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
@@ -9,8 +11,13 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import ToggleMode from "./ToggleMode";
+import { Badge } from "../../ui/badge";
 
 const Menu = () => {
+  const cartItemsCount = useAppSelector((state) =>
+    state.cart.cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
+  );
+
   return (
     <div className="flex justify-end gap-3">
       <nav className="hidden md:flex w-full max-w-xs gap-1 ">
@@ -18,6 +25,9 @@ const Menu = () => {
         <Button asChild variant="ghost">
           <Link to="/cart">
             <ShoppingCart /> Корзина
+            {cartItemsCount > 0 && (
+              <Badge variant="destructive">{cartItemsCount}</Badge>
+            )}
           </Link>
         </Button>
         <Button asChild>

@@ -1,32 +1,23 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { type Product } from "../../types/index";
 import ProductList from "../components/shared/Product/ProductList";
+import Loader from "../components/shared/Loader";
+import { useGetProductsQuery } from "../slices/productsApiSlice";
 
 const HomePage = () => {
-  const [fetchedProducts, setProducts] = useState<Product[]>();
+  const { data: products = [], error, isLoading } = useGetProductsQuery();
 
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch("http://localhost:5000/api/products");
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const products: Product[] = await response.json();
-      setProducts(products);
-    }
-    getData();
-  }, []);
-
-  let content: ReactNode;
-
-  if (fetchedProducts) {
-    content = (
-      <ProductList data={fetchedProducts} title="Новое поступление" limit={4} />
-    );
+  if (isLoading) return <Loader />;
+  if (error) {
+    const errorMessage =
+      (error as { data?: { message?: string } })?.data?.message ||
+      (error as { message?: string })?.message ||
+      "Unknown error";
+    return <div>{errorMessage}</div>;
   }
 
-  return <>{content}</>;
+  return (
+    <>
+      <ProductList data={products} title="Новое поступление" limit={4} />
+    </>
+  );
 };
 export default HomePage;
