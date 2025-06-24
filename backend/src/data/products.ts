@@ -1,16 +1,4 @@
-interface Product {
-  name: string;
-  category: string;
-  description: string;
-  images: string[];
-  price: number;
-  brand: string;
-  rating: number;
-  numReviews: number;
-  stock: number;
-  isFeatured: boolean;
-  banner?: string | null;
-}
+import { Product } from "../types/product.js";
 
 const products: Product[] = [
   {
