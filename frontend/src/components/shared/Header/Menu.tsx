@@ -1,5 +1,4 @@
 import { useAppSelector } from "../../../store/hooks";
-
 import { Link } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { EllipsisVertical, ShoppingCart, UserIcon } from "lucide-react";
@@ -12,6 +11,7 @@ import {
 } from "../../ui/sheet";
 import ToggleMode from "./ToggleMode";
 import { Badge } from "../../ui/badge";
+import UserButton from "./UserButton";
 
 const Menu = () => {
   const cartItemsCount = useAppSelector((state) =>
@@ -30,11 +30,7 @@ const Menu = () => {
             )}
           </Link>
         </Button>
-        <Button asChild>
-          <Link to="/sign-in">
-            <UserIcon /> Войти
-          </Link>
-        </Button>
+        <UserButton />
       </nav>
       <nav className="md:hidden">
         <Sheet>

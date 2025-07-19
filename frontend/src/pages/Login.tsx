@@ -7,12 +7,12 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import Logo from "../components/shared/Logo";
-import CredentialsSignInForm from "../components/shared/SignIn/credentialsSigninForm";
+import CredentialsSignInForm from "../components/shared/Credentials/CredentialsSignInForm";
 
-const SignIn = () => {
+const Login = () => {
   return (
     <div className="flex-center min-h-screen w-full">
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full max-w-md mx-auto ">
         <Card>
           <CardHeader className="space-y-4">
             <Link to="/" className="flex-center">
@@ -31,4 +31,4 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;
+export default Login;

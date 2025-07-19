@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "../../ui/card";
 import ProductPrice from "./ProductPrice";
-import type { Product } from "types";
+import type { Product } from "../../../../types/ordersApiSliceTypes";
+import Rating from "../Rating";
+import { BASE_URL } from "../../../constants";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -9,7 +11,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       <CardHeader className="p-0 items-center">
         <Link to={`/product/${product.id}`}>
           <img
-            src={product.images[0]}
+            src={`${BASE_URL}${product.images[0]}`}
             alt={product.name}
             className="h-[300px] w-[300px] object-cover"
           />
@@ -21,7 +23,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <h2 className="text-sm font-medium">{product.name}</h2>
         </Link>
         <div className="flex-between gap-4">
-          <p>{product.rating} Звезд</p>
+          <Rating value={Number(product.rating)} />
           {product.stock > 0 ? (
             <ProductPrice value={product.price} />
           ) : (

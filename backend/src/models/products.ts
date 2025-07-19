@@ -1,18 +1,4 @@
-interface Product {
-  name: string;
-  category: string;
-  description: string;
-  images: string[];
-  price: number;
-  brand: string;
-  rating: number;
-  numReviews: number;
-  stock: number;
-  isFeatured: boolean;
-  banner?: string | null;
-}
-
-const products: Product[] = [
+const products = [
   {
     name: "Классическая футболка поло",
     category: "Мужские рубашки",
@@ -23,8 +9,6 @@ const products: Product[] = [
     rating: 4.7,
     numReviews: 7,
     stock: 6,
-    isFeatured: true,
-    banner: "banner-1.jpg",
   },
   {
     name: "Рубашка с длинными рукавами",
@@ -36,8 +20,6 @@ const products: Product[] = [
     rating: 4.3,
     numReviews: 4,
     stock: 12,
-    isFeatured: true,
-    banner: "banner-2.jpg",
   },
   {
     name: "Рубашка классического кроя",
@@ -49,8 +31,6 @@ const products: Product[] = [
     rating: 4.8,
     numReviews: 4,
     stock: 0,
-    isFeatured: false,
-    banner: null,
   },
   {
     name: "Рубашка стретч",
@@ -62,8 +42,6 @@ const products: Product[] = [
     rating: 3.9,
     numReviews: 3,
     stock: 12,
-    isFeatured: false,
-    banner: null,
   },
   {
     name: "Брендовая рубашка Ральф Лоран",
@@ -75,8 +53,6 @@ const products: Product[] = [
     rating: 4.9,
     numReviews: 15,
     stock: 9,
-    isFeatured: false,
-    banner: null,
   },
   {
     name: "Классическая толстовка",
@@ -88,8 +64,6 @@ const products: Product[] = [
     rating: 4.8,
     numReviews: 14,
     stock: 9,
-    isFeatured: true,
-    banner: null,
   },
 ];
 

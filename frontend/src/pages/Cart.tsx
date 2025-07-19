@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useTransition } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { toast } from "../components/ui/sonner";
-// import { useTransition } from "react";
 import { ArrowRight, Loader, Trash } from "lucide-react";
 import {
   Table,
@@ -21,14 +20,17 @@ import {
   SelectItem,
 } from "../components/ui/select";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
-import { type CartItem } from "../slices/cartSlice";
+import { type CartItem } from "../../types/ordersApiSliceTypes";
 import ProductPrice from "../components/shared/Product/ProductPrice";
+import { toast } from "sonner";
+import { BASE_URL } from "../constants";
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const cart = useAppSelector((state) => state.cart);
+  const [isPending, startTransition] = useTransition();
   const { cartItems } = cart;
 
   const addToCartHandler = async (product: CartItem, quantity: number) => {
@@ -40,10 +42,15 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=/shipping");
+    startTransition(async () => {
+      navigate("/login?redirect=/shipping");
+    });
   };
   return (
     <>
+      <Button asChild size="sm">
+        <Link to={`/search`}>К ассортименту</Link>
+      </Button>
       <h1 className="py-4 h2-bold">Корзина</h1>
       {cartItems.length === 0 ? (
         <div>
@@ -70,7 +77,7 @@ const Cart = () => {
                         className="flex items-center"
                       >
                         <img
-                          src={item.images[0]}
+                          src={`${BASE_URL}${item.images[0]}`}
                           alt={item.name}
                           className="w-[50px] h-[50px]"
                         />
@@ -103,7 +110,17 @@ const Cart = () => {
                       <Button
                         variant="outline"
                         type="button"
-                        onClick={() => removeFromCartHandler(item.id)}
+                        className="cursor-pointer"
+                        onClick={() => {
+                          toast.error("Товар удален", {
+                            style: {
+                              background: "#fff0f0",
+                              color: "#ff0000",
+                              border: "1px solid #ffcccc",
+                            },
+                          });
+                          removeFromCartHandler(item?.id);
+                        }}
                       >
                         <Trash />
                       </Button>
@@ -132,10 +149,14 @@ const Cart = () => {
               </div>
               <Button
                 className="w-full"
-                disabled={cartItems.length === 0}
+                disabled={isPending}
                 onClick={checkoutHandler}
               >
-                <ArrowRight className="w-4 h-4" />
+                {isPending ? (
+                  <Loader className="w-4 h-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="w-4 h-4" />
+                )}
                 Перейти к оформлению
               </Button>
             </CardContent>
